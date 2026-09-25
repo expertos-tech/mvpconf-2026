@@ -1,0 +1,10 @@
+# Segredos e variáveis locais (nunca commitar)
+.env
+.env.*
+!.env.example
+
+# Node / Marp CLI
+node_modules/
+
+# macOS
+.DS_Store

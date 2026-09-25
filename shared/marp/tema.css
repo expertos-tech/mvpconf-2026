@@ -1,0 +1,48 @@
+/* @theme mvpconf */
+
+/* Tema Marp único das duas palestras. Estende o tema default para herdar código, tabelas etc. */
+@import 'default';
+
+:root {
+  --cor-fundo: #ffffff;
+  --cor-texto: #1b1b1f;
+  --cor-destaque: #0078d4; /* azul Azure */
+  --cor-suave: #605e5c;
+}
+
+section {
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 32px; /* grande o bastante para o fundo da sala */
+  padding: 60px 80px;
+}
+
+h1,
+h2 {
+  color: var(--cor-destaque);
+}
+
+/* Slide de abertura/fechamento: <!-- _class: lead --> */
+section.lead {
+  background: var(--cor-destaque);
+  color: #ffffff;
+  justify-content: center;
+  text-align: center;
+}
+
+section.lead h1,
+section.lead h2 {
+  color: #ffffff;
+}
+
+footer,
+section::after {
+  color: var(--cor-suave);
+  font-size: 18px;
+}
+
+section.lead footer,
+section.lead::after {
+  color: #ffffff;
+}
