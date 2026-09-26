@@ -1,0 +1,11 @@
+flowchart LR
+  User((Usuário)) --> Orders["Orders (Function)"]
+  Orders --> Table[("Table Storage")]
+  Orders -- evento --> Queue[["Storage Queue"]]
+  Queue --> Payments["Payments (Function)"]
+  Queue -. falha .-> Poison[["Fila poison"]]
+  Payments --> Cosmos[("Cosmos DB")]
+  Orders -.-> AppInsights[Application Insights]
+  Payments -.-> AppInsights
+  Orders -.-> KeyVault[Key Vault]
+  Payments -.-> KeyVault
