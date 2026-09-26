@@ -416,6 +416,45 @@ p {
 
 <!-- _class: lead -->
 
+<style scoped>
+.repo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 70px;
+  margin-top: 30px;
+}
+.repo img {
+  background: #ffffff;
+  border-radius: 12px;
+}
+.repo-mark {
+  width: 160px;
+  padding: 16px;
+}
+.repo-qr {
+  width: 260px;
+  padding: 10px;
+}
+.repo-link {
+  font-size: 30px;
+  margin-top: 30px;
+}
+</style>
+
+# Todo o material está no GitHub
+
+<div class="repo">
+  <img class="repo-mark" src="assets/github-mark.svg" alt="GitHub">
+  <img class="repo-qr" src="assets/github-qrcode.svg" alt="QR code do repositório">
+</div>
+
+<p class="repo-link">github.com/expertos-tech/mvpconf-2026</p>
+
+---
+
+<!-- _class: lead -->
+
 # Obrigado!
 
 Vimos às 14h: **Azure quase de graça** 💸
