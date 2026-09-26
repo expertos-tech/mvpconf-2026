@@ -1,0 +1,14 @@
+flowchart LR
+  User((Usuário)) --> FD[Front Door]
+  FD --> APIM[API Management]
+  APIM --> Orders["Orders (AKS)"]
+  APIM --> Payments["Payments (AKS)"]
+  Orders <-. "mTLS via Istio" .-> Payments
+  Orders --> Mongo[("Azure DocumentDB")]
+  Payments --> PG[("PostgreSQL")]
+  Orders -- evento --> Kafka[["Event Hubs / Kafka"]]
+  Kafka --> Payments
+  Kafka -. falha .-> DLQ[["Service Bus DLQ"]]
+  Orders -.-> Prom[Prometheus]
+  Payments -.-> Prom
+  Prom --> Grafana[Grafana]

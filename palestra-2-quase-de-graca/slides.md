@@ -100,6 +100,92 @@ li {
 
 ---
 
+# Esqueci que existe um negócio chamado CUSTO
+
+- **Você trabalha em empresas grandes**
+  - Orçamento de infraestrutura que parece infinito
+  - Ninguém questiona o custo de mais um ambiente
+- **Seu projeto pessoal chegou**
+  - Hora de criar aquela arquitetura que o arquiteto nunca deixou
+  - Kubernetes, observabilidade, logs centralizados, microsserviços, serviços assíncronos
+  - Múltiplas instâncias de banco, ambientes dev, qa e prod
+
+---
+
+# De cor, sem escrever uma linha
+
+- **Você cria o resource group e começa**
+  - Não precisa nem desenhar: essa arquitetura mora na sua cabeça há anos
+- **Só que agora é diferente**
+  - Não tem arquiteto para dizer "isso não cabe"
+  - Não tem FinOps perguntando o custo do ambiente
+  - É só você, o cartão de crédito e uma arquitetura pensada para escala horizontal e vertical
+
+---
+
+<style scoped>
+table {
+  font-size: 20px;
+  width: 100%;
+}
+</style>
+
+# Minha infra dos sonhos — borda e computação
+
+| Componente | Serviço do Azure |
+|---|---|
+| Porta de entrada global | Azure Front Door Premium *(vemos às 16h)* |
+| Gateway de API | Azure API Management Premium, multi-região |
+| Os dois microsserviços | Azure Kubernetes Service (AKS), multi-node pool |
+| Comunicação entre serviços | Istio-based service mesh add-on |
+| Imagens dos containers | Azure Container Registry Premium, geo-replicado |
+
+---
+
+<style scoped>
+table {
+  font-size: 20px;
+  width: 100%;
+}
+</style>
+
+# Minha infra dos sonhos — dados e mensageria
+
+| Componente | Serviço do Azure |
+|---|---|
+| Banco do microsserviço de pedidos | Azure DocumentDB (compatível com MongoDB) |
+| Banco do microsserviço de pagamentos | Azure Database for PostgreSQL, Flexible Server |
+| Stream de eventos entre os serviços | Event Hubs com protocolo Kafka |
+| Fila de reprocessamento (dead-letter) | Azure Service Bus *(Kafka não tem DLQ nativo)* |
+
+---
+
+<style scoped>
+table {
+  font-size: 20px;
+  width: 100%;
+}
+</style>
+
+# Minha infra dos sonhos — observabilidade, segurança e ambientes
+
+| Componente | Serviço do Azure |
+|---|---|
+| Métricas, logs e traces da aplicação | Azure Monitor + Application Insights |
+| Métricas do cluster Kubernetes | Azure Monitor managed service for Prometheus |
+| Dashboards | Azure Managed Grafana |
+| Segredos e certificados | Azure Key Vault |
+| Isolamento de rede | Virtual Network + Private Endpoint |
+| Ambientes separados | dev, qa e prod, cada um com seu resource group |
+
+---
+
+# Como tudo isso conversa
+
+![w:1050](assets/arquitetura-sonhos.svg)
+
+---
+
 <!-- _class: lead -->
 
 # Talk is cheap. Show me the code.

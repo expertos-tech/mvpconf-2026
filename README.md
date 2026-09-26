@@ -34,7 +34,7 @@ CLAUDE.md                    # regras de trabalho do repositório
 
 ## Pré-requisitos
 
-- [Node.js](https://nodejs.org/) (para rodar o Marp CLI via `npx`)
+- [Node.js](https://nodejs.org/) (para rodar o Marp CLI e o Mermaid CLI via `npx`)
 - [Git LFS](https://git-lfs.com/) (exports e vídeos do plano B)
 - [Azure CLI](https://learn.microsoft.com/cli/azure/install-azure-cli) (demos)
 
@@ -60,6 +60,14 @@ npx @marp-team/marp-cli@latest slides.md --theme-set ../shared/marp/tema.css --a
 
 # Exportar PPTX (sem notas; as notas ficam no roteiro.md)
 npx @marp-team/marp-cli@latest slides.md --theme-set ../shared/marp/tema.css --allow-local-files --pptx -o dist/slides.pptx
+```
+
+Diagramas de arquitetura ficam como fonte `.mmd` ([Mermaid](https://mermaid.js.org/)) ao lado da
+imagem gerada em `assets/`. O Marp não renderiza Mermaid nativamente; depois de editar um `.mmd`,
+gere o SVG de novo:
+
+```bash
+npx @mermaid-js/mermaid-cli -i assets/<diagrama>.mmd -o assets/<diagrama>.svg
 ```
 
 ## Demos e custos
