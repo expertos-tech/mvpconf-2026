@@ -69,7 +69,7 @@ MVP Microsoft · 25 anos de carreira
 
 **Algumas habilidades**
 
-- Java, Angular, React, NodeJS, .Net, GoLang, Python
+- Java, Angular, React, Node.js, .NET, Go, Python
 - IA, SRE, Cloud, DevOps
 - Linux SysAdmin, Kubernetes
 - Data Science
@@ -88,12 +88,12 @@ MVP Microsoft · 25 anos de carreira
 <style scoped>
 ul {
   columns: 2;
-  column-gap: 60px;
-  font-size: 24px;
+  column-gap: 50px;
+  font-size: 21px;
 }
 li {
   break-inside: avoid;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 </style>
 
@@ -110,6 +110,9 @@ li {
 - **TLS:** criptografia usada pelo HTTPS
 - **XSS:** Cross-Site Scripting, injeção de script malicioso na página
 - **SQL injection:** comandos SQL maliciosos enviados pelos campos da aplicação
+- **Origem / origin group:** sua aplicação e o grupo de instâncias dela atrás do Front Door
+- **Health probe:** verificação periódica que diz se uma origem está saudável
+- **Rules engine:** regras que alteram a requisição ou a resposta na borda
 
 ---
 
@@ -137,14 +140,13 @@ li {
 
 # Não é só a distância
 
-- **Região única: a latência não vem só da distância**
 - **Resolução DNS**
   - Resolver → raiz → TLD → servidor autoritativo (quando não está em cache)
 - **Saltos de rede na internet pública**
   - Provedores, roteadores e pontos de troca até chegar na sua instância
   - Cada salto soma latência e pode congestionar ou perder pacotes
 - **Handshake TCP + TLS**
-  - 3 a 5 idas e voltas completas antes do primeiro byte
+  - Só abrir a conexão já custa de 3 a 5 idas e voltas; o TLS soma mais
 
 ---
 
@@ -209,7 +211,7 @@ li {
 
 # Do PoP até a sua aplicação
 
-- Do PoP em diante, o tráfego segue pela rede global da Microsoft, sem passar pela internet pública
+- Do PoP em diante, o tráfego segue pela rede global da Microsoft, sem passar pela internet pública (origem no Azure)
 - Menos saltos e menos intermediários, em rotas otimizadas
 - O DNS continua existindo, mas já aponta para o PoP ideal
 
@@ -222,7 +224,26 @@ table {
 }
 </style>
 
-# Standard × Premium: recursos
+# Front Door, Application Gateway ou Traffic Manager?
+
+| Serviço | Escopo | Como atua | Use quando |
+|---|---|---|---|
+| **Front Door** | Global | Proxy L7 na borda: cache, WAF, TLS, roteamento | App web pública com usuários em várias regiões |
+| **Application Gateway** | Regional | Proxy L7 dentro da região (e L4 TCP/TLS), com WAF | Balancear e proteger dentro de uma região ou VNet |
+| **Traffic Manager** | Global | Só DNS: responde qual endpoint usar, não vê o tráfego | Qualquer protocolo; failover mais lento (cache de DNS) |
+
+Podem ser combinados: Front Door na frente, Application Gateway dentro da região.
+
+---
+
+<style scoped>
+table {
+  font-size: 22px;
+  width: 100%;
+}
+</style>
+
+# Standard × Premium: recursos (1/2)
 
 | Recurso | Standard | Premium |
 |---|---|---|
@@ -241,7 +262,7 @@ table {
 }
 </style>
 
-# Standard × Premium: recursos
+# Standard × Premium: recursos (2/2)
 
 | Recurso | Standard | Premium |
 |---|---|---|
@@ -286,7 +307,7 @@ p {
 - Chave de cache configurável: ignorar, usar ou filtrar query strings
 - TTL definido pela origem ou sobrescrito por regra (até 366 dias)
 - Compressão gzip e Brotli na borda
-- Purge: limpa o cache na hora, depois de um deploy
+- Purge sob demanda: força buscar de novo na origem (propaga em até 10 min)
 
 ---
 
@@ -397,7 +418,7 @@ p {
 
 # Obrigado!
 
-Às 14h: **Azure quase de graça** 
+Às 14h: **Azure quase de graça** 💸
 
 ---
 
@@ -440,9 +461,10 @@ table {
 | Não é só a distância | [Traffic acceleration](https://learn.microsoft.com/azure/frontdoor/front-door-traffic-acceleration) |
 | O que é o Azure Front Door? | [Overview](https://learn.microsoft.com/azure/frontdoor/front-door-overview), [Routing architecture](https://learn.microsoft.com/azure/frontdoor/front-door-routing-architecture) |
 | Do PoP até a sua aplicação | [Microsoft global network](https://learn.microsoft.com/azure/networking/microsoft-global-network), [Overview](https://learn.microsoft.com/azure/frontdoor/front-door-overview) |
+| Front Door, Application Gateway ou Traffic Manager? | [Load balancing options](https://learn.microsoft.com/azure/architecture/guide/technology-choices/load-balancing-overview) |
 | Standard × Premium: recursos | [Tier comparison](https://learn.microsoft.com/azure/frontdoor/front-door-cdn-comparison), [WAF no Front Door](https://learn.microsoft.com/azure/web-application-firewall/afds/afds-overview) |
 | Standard × Premium: custos | [Pricing](https://azure.microsoft.com/pricing/details/frontdoor/), [Compare pricing](https://learn.microsoft.com/azure/frontdoor/understanding-pricing) |
-| Cache e compressão | [Rule set actions](https://learn.microsoft.com/azure/frontdoor/front-door-rules-engine-actions) |
+| Cache e compressão | [Rule set actions](https://learn.microsoft.com/azure/frontdoor/front-door-rules-engine-actions), [Cache purge](https://learn.microsoft.com/azure/frontdoor/cache-purge) |
 | Domínios e certificados | [Add a custom domain](https://learn.microsoft.com/azure/frontdoor/standard-premium/how-to-add-custom-domain) |
 | Roteamento e origin groups | [Routing methods](https://learn.microsoft.com/azure/frontdoor/routing-methods) |
 

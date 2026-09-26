@@ -1,4 +1,4 @@
-# Live coding — latência Brasil × longe do Brasil
+# Live coding — latência Brasil × Austrália
 
 Plano do live coding da palestra Azure Front Door. Foco em ser **funcional e mensurável**;
 layout não importa.
@@ -68,6 +68,11 @@ do Remote Desktop só afeta a tela que chega até você, não os números medido
   perto do usuário (slide "Não é só a distância").
 - **Conexão reaproveitada (keep-alive):** a diferença deve ser menor e pode até favorecer
   a origem.
+- **Risco da demo visual:** no navegador, os 20 `fetch` reaproveitam a mesma conexão
+  (keep-alive). Só o **primeiro** ping paga o handshake; a mediana dos outros 19 pode ficar
+  parecida entre origem e Front Door. Por isso a página mostra o primeiro ping em separado, e a
+  demo forte é o `curl` com conexão nova. Alternativa a avaliar no ensaio: medir a recarga
+  completa da página (Navigation Timing) em vez de `fetch`.
 - **Nenhum número é prometido.** Os valores medidos no ensaio vão para a tabela da seção 9.
 
 ## 4. Roteiro ao vivo (básico)
