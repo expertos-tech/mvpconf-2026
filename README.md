@@ -3,6 +3,8 @@
 Material de duas palestras apresentadas no mesmo dia no **MVPConf 2026**: slides, roteiros,
 demos ao vivo e fontes verificadas.
 
+> Data e local do evento: a confirmar.
+
 | Horário | Palestra | Pasta |
 |---|---|---|
 | 10h | **Azure Front Door:** Sua aplicação conquistando o mundo | [`palestra-1-front-door/`](palestra-1-front-door/) |
@@ -66,7 +68,7 @@ As demos criam recursos no Azure que **podem gerar cobrança**.
 
 - Todo recurso recebe as tags `evento=mvpconf2026` e `palestra=afd|free`.
 - Os resource groups seguem o padrão `rg-mvpconf26-<palestra>-<demo>`.
-- Apague tudo depois de usar. Cada ambiente de demo tem um script de limpeza que remove os recursos pelas tags.
+- Apague tudo depois de usar: `shared/scripts/cleanup.sh` lista os resource groups com a tag do evento e pede confirmação antes de apagar.
 
 Nunca commite secrets, connection strings ou IDs de assinatura. Use o [`.env.example`](.env.example)
 como modelo e mantenha o `.env` fora do git.

@@ -19,7 +19,7 @@ roteiriza demos ao vivo com plano B, gera scripts prontos para rodar e antecipa 
 ### Palestra 1 — Azure Front Door
 **Objetivo:** mostrar como distribuir uma aplicação globalmente com baixa latência, segurança e alta disponibilidade.
 
-Temas: tiers Standard e Premium · rede de borda e roteamento anycast · origin groups e health probes ·
+Temas: tiers Standard e Premium · rede de borda e roteamento unicast (Traffic Manager escolhe o PoP; anycast era do classic) · origin groups e health probes ·
 regras de roteamento e rules engine · cache · WAF · Private Link com origens ·
 domínios personalizados e certificados gerenciados · comparação com Traffic Manager,
 Application Gateway e CDN · migração do Front Door clássico · custos.
@@ -70,13 +70,11 @@ shared/
   scripts/                    # utilitários comuns (login, limpeza, checagem de custo)
   marp/tema.css               # tema Marp único para as duas palestras
 .github/workflows/            # pipelines das demos (o GitHub só lê workflows da raiz)
-tmp/                          # rascunhos e planejamento de trabalho (fora do git)
-  planejamento-<palestra>.md  # conteúdo em texto, slide a slide, antes de ir para o slides.md
+tmp/                          # rascunhos e arquivos de trabalho (fora do git)
 ```
 
-- **Fluxo dos slides:** o conteúdo é discutido e aprovado slide a slide em `tmp/planejamento-<código>.md`
-  (ex.: `planejamento-afd.md`); só depois de aprovado vai para o `slides.md`, que continua sendo a
-  fonte da verdade do deck.
+- **Fluxo dos slides:** propor o slide no chat (título + bullets), aprovar e gravar direto no
+  `slides.md`, que é a fonte da verdade do deck. `tmp/` é só para rascunhos livres.
 
 - **`infra/` × `demos/NN/`:** `infra/` é o ambiente base que existe antes de a palestra começar;
   `demos/NN/` guarda só o que roda ao vivo ou é exclusivo daquela demo.
@@ -108,7 +106,8 @@ tmp/                          # rascunhos e planejamento de trabalho (fora do gi
   - Páginas de preço: https://azure.microsoft.com/pricing/
   - Calculadora: https://azure.microsoft.com/pricing/calculator/
 - Registre toda informação verificada em `fontes.md` com: afirmação, link, data da verificação.
-- Nos slides, números vêm com a data da verificação (ex.: "preço verificado em set/2026").
+- Nos slides, **preços** vêm com a data da verificação (ex.: "verificado em set/2026"). Os demais
+  números ficam cobertos pelo slide de Referências e pelo `fontes.md`.
 - Quando não tiver certeza, **diga isso claramente** e marque com `> ⚠️ VERIFICAR:` em vez de supor.
 - Sinalize recursos em **preview** com `(preview)` em slides, notas e scripts.
 
@@ -124,7 +123,8 @@ tmp/                          # rascunhos e planejamento de trabalho (fora do gi
 Os slides são escritos em **Marp** (Markdown → PPTX/PDF/HTML). O `slides.md` é a fonte da verdade;
 nunca edite o `.pptx` gerado à mão.
 
-- **Uma ideia por slide**, pouco texto (máximo ~20 palavras visíveis).
+- **Uma ideia por slide.** Até ~6 bullets de uma linha (sub-bullets contam). Tabelas e slides mais
+  densos usam `<style scoped>` com fonte menor. Se não couber na tela, dividir em dois slides.
 - Slides separados por `---`.
 - **Notas do apresentador não ficam no `slides.md`**: o tempo, o que falar e a transição de cada
   slide ficam no `roteiro.md`. O `slides.md` só usa comentários HTML para diretivas do Marp
@@ -249,8 +249,8 @@ Formato obrigatório: título imperativo e específico + corpo com pelo menos um
 - **Nunca** commite secrets, connection strings, chaves ou IDs de assinatura. Use variáveis
   de ambiente, `.env` (no `.gitignore`) ou Key Vault.
 - **Peça confirmação** antes de executar comandos que criam recursos pagos ou que apagam recursos.
-- Todo ambiente de demo tem um script de limpeza correspondente
-  (ex.: `shared/scripts/cleanup.sh`, apagando por tag `evento=mvpconf2026`).
+- Limpeza: `shared/scripts/cleanup.sh` lista e apaga os resource groups com a tag
+  `evento=mvpconf2026` (opcionalmente filtrando por `palestra`), sempre pedindo confirmação.
 - Ao sugerir um recurso, informe se ele tem custo fixo mensal ou só por uso (verificado na fonte).
 
 ## Como trabalhar comigo neste repositório
