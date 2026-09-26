@@ -58,9 +58,12 @@ img[alt="Expertos Tech"] {
   right: 65px;
   width: 240px;
 }
+section[data-marpit-advanced-background="background"] figure {
+  margin-left: 20px;
+}
 </style>
 
-![bg left:25% fit](assets/apresentacao-avatar.png)
+![bg left:25% fit](assets/rodrigo-tavares.png)
 
 # Rodrigo Tavares
 
