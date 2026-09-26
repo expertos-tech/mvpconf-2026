@@ -43,6 +43,7 @@ como desligar e limpar recursos.
 Um único repositório com as duas palestras e as apps de demo.
 
 ```
+README.md                     # apresentação do repositório para quem chega (pt-BR)
 CLAUDE.md                     # este arquivo
 fontes.md                     # preços, limites e datas verificados, com link e data da verificação
 .env.example                  # variáveis usadas pelos scripts (sem valores reais)
