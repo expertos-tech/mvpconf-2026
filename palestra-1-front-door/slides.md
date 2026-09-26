@@ -418,7 +418,7 @@ p {
 
 # Obrigado!
 
-Às 14h: **Azure quase de graça** 💸
+Vimos às 14h: **Azure quase de graça** 💸
 
 ---
 
@@ -443,7 +443,7 @@ ul {
   - Pode haver uma autorização temporária de US$ 1, estornada depois
   - Não há cobrança, a menos que você faça upgrade para pagamento conforme o uso
 - **Acabou o crédito ou passaram os 30 dias?** Os serviços são desativados até você fazer o upgrade
-- *Detalhes e armadilhas de custo: palestra das 14h, "Azure quase de graça"*
+- *Detalhes e armadilhas de custo: vimos às 14h, na palestra "Azure quase de graça"*
 
 ---
 

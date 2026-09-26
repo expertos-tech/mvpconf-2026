@@ -1,6 +1,6 @@
 # Roteiro — Azure Front Door: Sua aplicação conquistando o mundo
 
-MVPConf 2026 · 10h · 50 min
+MVPConf 2026 · 16h · 50 min
 
 **Objetivo:** mostrar como distribuir uma aplicação globalmente com baixa latência, segurança
 e alta disponibilidade.
@@ -15,7 +15,7 @@ e alta disponibilidade.
 | Planos | 14:00–16:45 | 14–16 | Standard × Premium: recursos e custos |
 | Recursos | 16:45–27:15 | 17–27 | Um slide por recurso, ligando cada um ao problema que resolve |
 | Demos ao vivo | 27:15–44:30 | 28 | "Talk is cheap. Show me the code." + demos |
-| Fechamento | 44:30–45:00 | 29 | Obrigado + convite para as 14h |
+| Fechamento | 44:30–45:00 | 29 | Obrigado + ponte com a palestra das 14h |
 | Perguntas e folga | 45:00–50:00 | — | — |
 | Apêndice | não apresentado | 30–34 | Conta gratuita, referências, treinamentos |
 
@@ -99,7 +99,7 @@ neste bloco**; a solução vem no slide 10.
 
 **16. Standard × Premium: custos** · 15:30–16:45 (1:15)
 - Citar só a taxa fixa (US$ 35 × US$ 330) e dizer que o resto varia por zona.
-- Ponte para as 14h: "custo em detalhe, e como gastar pouco, é na palestra Azure quase de graça". Não aprofundar aqui.
+- Ponte com as 14h: "custo em detalhe, e como gastar pouco, vimos às 14h na palestra Azure quase de graça". Não aprofundar aqui.
 - Lembrar o classic: desligamento em 31/03/2027.
 
 ### Recursos (16:45–27:15)
@@ -158,8 +158,8 @@ marcados no título.
 ### Fechamento (44:30–50:00)
 
 **29. Obrigado!** · 44:30–45:00 (0:30)
-- Agradecer, dizer onde encontrar o material (QR code do slide 2) e convidar para as 14h:
-  "de manhã levamos a app para o mundo; à tarde, vamos ver como fazer isso sem gastar uma fortuna".
+- Agradecer, dizer onde encontrar o material (QR code do slide 2) e fechar o dia com a ponte:
+  "às 14h vimos como publicar gastando pouco; agora você viu como levar a app para o mundo".
 - Transição: abrir para perguntas.
 
 **Perguntas e folga** · 45:00–50:00 (5:00)
@@ -176,7 +176,7 @@ marcados no título.
 - **Slide 3 (dicionário):** mostrar por 15 s e seguir (ganha ~30 s).
 - **Slides 14–15 (recursos):** passar juntos em 1 min (ganha ~30 s).
 - **Slides 21–26:** agrupar DDoS, WAF, bots e Private Link numa fala só de segurança, 30 s por slide (ganha ~2 min).
-- **Slide 16 (custos):** só a taxa fixa e a ponte para as 14h (ganha ~30 s).
+- **Slide 16 (custos):** só a taxa fixa e a ponte com a palestra das 14h (ganha ~30 s).
 - **Slide 13 (comparação):** responder só se perguntarem (ganha ~1 min).
 
 ## Bônus (se sobrar tempo)

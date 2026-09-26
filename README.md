@@ -7,8 +7,8 @@ demos ao vivo e fontes verificadas.
 
 | Horário | Palestra | Pasta |
 |---|---|---|
-| 10h | **Azure Front Door:** Sua aplicação conquistando o mundo | [`palestra-1-front-door/`](palestra-1-front-door/) |
 | 14h | **Azure quase de graça:** como publicar sem gastar uma fortuna | [`palestra-2-quase-de-graca/`](palestra-2-quase-de-graca/) |
+| 16h | **Azure Front Door:** Sua aplicação conquistando o mundo | [`palestra-1-front-door/`](palestra-1-front-door/) |
 
 Cada palestra tem 50 minutos, é voltada para devs e profissionais de infraestrutura de nível
 intermediário e segue o formato **pouco slide + live coding**.

@@ -2,6 +2,8 @@
 
 MVPConf 2026 · 14h · 50 min
 
+> Primeira palestra do dia. Fechar convidando para a do Azure Front Door às 16h.
+
 **Objetivo:** mostrar caminhos reais para publicar aplicações no Azure gastando pouco ou nada.
 
 | Bloco | Tempo | Conteúdo |

@@ -8,8 +8,11 @@ roteiriza demos ao vivo com plano B, gera scripts prontos para rodar e antecipa 
 
 | Horário | Título | Pasta |
 |---|---|---|
-| 10h | Azure Front Door: Sua aplicação conquistando o mundo | `palestra-1-front-door/` |
 | 14h | Azure quase de graça: como publicar sem gastar uma fortuna | `palestra-2-quase-de-graca/` |
+| 16h | Azure Front Door: Sua aplicação conquistando o mundo | `palestra-1-front-door/` |
+
+> Os nomes das pastas (`palestra-1`, `palestra-2`) refletem a ordem original e foram mantidos
+> para não quebrar links; a ordem de apresentação é a da tabela.
 
 - **Duração:** 50 minutos cada
 - **Público:** devs e profissionais de infraestrutura da comunidade Microsoft, nível intermediário
@@ -33,10 +36,10 @@ orçamentos e alertas no Cost Management · armadilhas que geram cobrança inesp
 como desligar e limpar recursos.
 
 ### Conexão entre as palestras
-- Sugira referências cruzadas quando fizer sentido (ex.: citar à tarde o custo do Front Door;
-  fechar a palestra da manhã convidando para a das 14h).
+- Sugira referências cruzadas quando fizer sentido (ex.: fechar a palestra das 14h convidando
+  para a do Front Door às 16h; na das 16h, retomar os custos com "vimos às 14h").
 - **Não repita conteúdo** entre as duas. Se um tema cabe nas duas, decida onde ele mora e
-  na outra faça só a ponte ("vimos isso às 10h", "veremos isso às 14h").
+  na outra faça só a ponte ("vimos isso às 14h", "veremos isso às 16h").
 
 ## Estrutura do repositório
 
@@ -82,7 +85,7 @@ tmp/                          # rascunhos e arquivos de trabalho (fora do git)
 
 ### Apps de demo
 - O código das apps fica em `apps/<nome>/`. Uma app pode servir às duas palestras (ex.: a mesma
-  app publicada barato às 14h e distribuída globalmente às 10h) — isso evita duplicar código.
+  app publicada barato às 14h e distribuída globalmente às 16h) — isso evita duplicar código.
 - O `README.md` de cada demo aponta para a app e o workflow que usa.
 - Workflows em `.github/workflows/`, prefixados pelo código da palestra (`afd-*.yml`, `free-*.yml`),
   com filtro `paths:` apontando para a app e autenticação via OIDC.
