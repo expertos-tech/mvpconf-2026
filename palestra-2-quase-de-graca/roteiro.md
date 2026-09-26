@@ -7,13 +7,9 @@ MVPConf 2026 · 14h · 50 min
 **Objetivo:** mostrar caminhos reais para publicar aplicações no Azure gastando pouco ou nada.
 
 **Sem live coding.** No lugar do live coding, a demo é **a fatura real de uma aplicação sua**
-que roda com Azure Front Door e gira em torno de **US$ 1/dia**. Prepare com antecedência:
+que roda com Azure Front Door e gira em torno de **US$ 1,20/dia**. Prepare com antecedência:
 login no portal já feito, Cost Management aberto na assinatura certa, e um recorte de
 período (ex.: últimos 30 dias) pronto para mostrar sem digitar nada ao vivo.
-
-> ⚠️ O slide "Talk is cheap. Show me the code." ainda está no deck como transição para a
-> demo. A frase é sobre código; como não há live coding, a nota do apresentador redireciona
-> para "mostrar a fatura real". Considerar trocar o texto do slide depois.
 
 ## Blocos
 
@@ -25,7 +21,7 @@ período (ex.: últimos 30 dias) pronto para mostrar sem digitar nada ao vivo.
 | O que é grátis e barato | 14:15–19:45 | 65 serviços grátis, tabelas, Canivete Suíço |
 | Nossa arquitetura | 19:45–25:00 | Tabela, diagrama, custo, "fatura que dá pra pagar", SLA |
 | Além do básico | 25:00–26:45 | App global, escala |
-| Demo: a fatura real | 27:00–44:00 | Cost Management de uma aplicação real, ~US$ 1/dia |
+| Demo: a fatura real | 26:45–44:00 | Cost Management de uma aplicação real, ≈ US$ 1,20/dia |
 | Fechamento | 44:00–44:45 | Obrigado + convite para as 16h |
 | Perguntas e folga | 44:45–50:00 | — |
 | Apêndice | não apresentado | Conta gratuita, referências, treinamentos |
@@ -73,6 +69,7 @@ período (ex.: últimos 30 dias) pronto para mostrar sem digitar nada ao vivo.
 **10. E quando chega a fatura** · 09:00–10:15 (1:15)
 - Pausa antes de revelar o número. Deixar a plateia reagir ao "R$ 23.250/mês por ambiente".
 - Bater o "× 3 ambientes ≈ R$ 70 mil/mês" com força.
+- Se alguém apontar que Front Door é global (um por app, não por ambiente): concordar e usar a favor — "é exatamente isso, ninguém parou pra pensar; clonou tudo".
 
 **11. O sonho quase perdido** · 10:15–11:15 (1:00)
 - Vira o tom: não é "nunca", é "ainda não". O cliente não liga pra arquitetura.
@@ -97,16 +94,17 @@ período (ex.: últimos 30 dias) pronto para mostrar sem digitar nada ao vivo.
 - Pergunta retórica, deixar no ar 2 segundos antes de seguir.
 
 **17. O que é sempre grátis — computação** · 14:30–15:30 (1:00)
-- Destacar Functions (1 milhão de execuções) — é a peça que vai aparecer na nossa arquitetura.
+- Destacar Functions — é a peça que vai aparecer na nossa arquitetura. Avisar: o plano Consumption (1 milhão) é o legado; o Flex Consumption (250 mil) é o que o portal cria hoje e o que a palestra das 16h usa. Nos dois, um projeto pessoal fica dentro da franquia.
 
 **18. O que é sempre grátis — dados e mensageria** · 15:30–16:30 (1:00)
 - Cosmos DB free tier é o outro pilar que volta mais à frente.
 
-**19. O que é sempre grátis — porta de entrada, observabilidade e segredos** · 16:30–17:30 (1:00)
-- Avisar que Key Vault não tem tier "sempre grátis" oficial, mas o custo é irrisório.
+**19. O que é sempre grátis — porta de entrada e observabilidade** · 16:30–17:30 (1:00)
+- Static Web Apps já traz a distribuição global; Monitor dá 5 GB de ingestão. Segredos ficam para o próximo slide.
 
 **20. Não é free mas é muito barato** · 17:30–18:45 (1:15)
-- Passar rápido pelas 7 linhas. Storage Account fica em suspense ("aguarde, veremos a seguir").
+- Passar rápido pelas 8 linhas. Storage Account fica em suspense ("aguarde, veremos a seguir").
+- Key Vault está aqui e não em "sempre grátis" de propósito: não tem franquia oficial, mas sem taxa fixa e a US$ 0,03 por 10 mil operações é irrelevante.
 - Front Door aqui é só a linha da tabela; o slide dedicado vem depois.
 
 **21. Te apresento: O Canivete Suíço** · 18:45–19:45 (1:00)
@@ -117,18 +115,21 @@ período (ex.: últimos 30 dias) pronto para mostrar sem digitar nada ao vivo.
 **22. Nossa arquitetura** · 19:45–21:00 (1:15)
 - Ler a tabela linha por linha, ligando com as capacidades do slide 15.
 - Frisar "porta de entrada: nenhuma" — é a peça que mais gera pergunta.
+- Cosmos DB "400 RU/s": deixar claro que é provisionamento deliberado, abaixo do teto de 1.000 RU/s do free tier (slide 18) — não é contradição.
 
 **23. Como tudo isso conversa** · 21:00–22:00 (1:00)
 - Mostrar o diagrama e comparar visualmente com o das "sonhos" (mesmos papéis, peças diferentes).
 
 **24. Quanto realmente custa** · 22:00–23:00 (1:00)
 - As premissas de uso (200 mil execuções etc.) — deixar claro que é uma estimativa, não garantia.
+- 200 mil execuções cabem tanto na franquia do Consumption (1 milhão) quanto na do Flex (250 mil).
 
 **25. Uma fatura que dá pra pagar** · 23:00–24:00 (1:00)
 - O contraste com o slide 10 é o clímax do bloco. Pausa antes do número.
 
 **26. Mas a Microsoft diz: não use free em produção** · 24:00–25:00 (1:00)
-- Antecipa a objeção do público antes que alguém pergunte. Fechar com "a infra cresce junto com o faturamento".
+- Antecipa a objeção. A resposta é "depende do serviço": App Service F1 e Static Web Apps Free são de fato "para projetos pessoais", sem SLA. Já o Cosmos DB free tier tem SLA e a própria doc fala em "small production workloads". Functions, Storage e Key Vault são o serviço de produção com desconto.
+- Fechar com "a infra cresce junto com o faturamento".
 
 ### Além do básico (25:00–26:45)
 
@@ -138,14 +139,14 @@ período (ex.: últimos 30 dias) pronto para mostrar sem digitar nada ao vivo.
 **28. Mas isso escala?** · 25:45–26:45 (1:00)
 - Fecha a objeção de escala antes da demo. Cosmos sobe o RU/s, Functions escala sozinho, Container Apps é a alternativa.
 
-### Demo: a fatura real (27:00–44:00)
+### Demo: a fatura real (26:45–44:00)
 
-**29. Talk is cheap. Show me the code.** · 27:00–27:15 (0:15)
-- Trocar para o navegador/portal. Falar: "aqui não tem code, tem fatura de verdade" — usar a virada de expectativa a seu favor.
+**29. Talk is cheap. Show me the bill.** · 26:45–27:00 (0:15)
+- Trocar para o navegador/portal. A frase já entrega a virada: aqui a prova não é código, é a fatura.
 
 **Demo (17:00)**
 - Abrir o Cost Management da assinatura real, filtrado pelos últimos 30 dias.
-- Mostrar o total (~US$ 1/dia) e detalhar por serviço, destacando o Azure Front Door na lista.
+- Mostrar o total (≈ US$ 1,20/dia — praticamente a taxa fixa do Front Door Standard, US$ 35/mês) e detalhar por serviço, destacando o Azure Front Door na lista.
 - Comparar com a fatura fictícia de R$ 23.250/mês do início da palestra.
 - Plano B: prints ou vídeo da tela de custos, para o caso de o portal falhar ou a rede do evento não deixar.
 - Reset: nada a resetar, é só uma consulta de leitura.

@@ -3,12 +3,12 @@ marp: true
 theme: mvpconf
 paginate: true
 size: 16:9
-footer: "MVPConf 2026 · Azure Quase de Graça"
+footer: "MVPConf 2026 · Azure quase de graça"
 ---
 
 <!-- _class: lead -->
 
-# Azure Quase de Graça
+# Azure quase de graça
 ## Como publicar sem gastar uma fortuna
 
 ---
@@ -291,7 +291,8 @@ table {
 |---|---|---|
 | Static Web Apps (Free) | Hospeda site estático/SPA + API gerenciada via Functions | 250 MB por app, 2 domínios próprios, sem SLA |
 | App Service (F1) | Hospeda apps web e APIs | 60 min de CPU/dia, 1 GB RAM, sem domínio próprio |
-| Functions (Consumption) | Roda código sob demanda | 1 milhão de execuções + 400.000 GB-s por mês |
+| Functions (Consumption, legado) | Roda código sob demanda | 1 milhão de execuções + 400.000 GB-s por mês |
+| Functions (Flex Consumption, recomendado) | Mesmo modelo, escala mais rápido | 250 mil execuções + 100.000 GB-s por mês |
 | Container Apps (Consumption) | Roda containers sob demanda | 180.000 vCPU-s + 360.000 GiB-s + 2 milhões de requisições/mês |
 
 ---
@@ -320,13 +321,12 @@ table {
 }
 </style>
 
-# O que é sempre grátis — porta de entrada, observabilidade e segredos
+# O que é sempre grátis — porta de entrada e observabilidade
 
 | Serviço | O que faz | Limite do gratuito |
 |---|---|---|
 | Static Web Apps (CDN embutido) | Distribuição global de conteúdo | Incluso no free tier, sem custo à parte |
 | Azure Monitor (Log Analytics) | Logs, métricas e alertas | 5 GB de ingestão por mês |
-| Key Vault | Guarda segredos e certificados | Sem tier grátis; ~US$ 0,03 a cada 10 mil operações |
 
 ---
 
@@ -342,7 +342,8 @@ table {
 | Serviço | O que faz | Custo aproximado |
 |---|---|---|
 | Storage Account (Blob, Hot LRS) | Aguarde, veremos a seguir | ~US$ 0,018/GB por mês |
-| Functions (além da franquia grátis) | Execuções extras de código sob demanda | US$ 0,20 por milhão de execuções |
+| Functions (além da franquia grátis) | Execuções extras de código sob demanda | US$ 0,20/milhão (Consumption) · US$ 0,40/milhão (Flex) |
+| Key Vault | Guarda segredos e certificados | ~US$ 0,03 a cada 10 mil operações, sem taxa fixa |
 | Azure DNS | Hospeda seu domínio | ~US$ 0,50/zona/mês + US$ 0,40/milhão de consultas |
 | Container Instances (ACI) | Roda um container avulso, sem orquestração | ~US$ 0,0000125/vCPU-segundo |
 | Logic Apps (Consumption) | Automatiza fluxos (notificação, integração) | 4.000 ações grátis, depois US$ 0,000025/ação |
@@ -399,7 +400,7 @@ table {
 
 | Item | Uso em 30 dias | Custo |
 |---|---|---|
-| Functions (2 microsserviços) | ~200 mil execuções | Grátis (franquia de 1 milhão) |
+| Functions (2 microsserviços) | ~200 mil execuções | Grátis (dentro da franquia) |
 | Cosmos DB (400 RU/s) | < 25 GB | Grátis (free tier) |
 | Table Storage | < 1 GB, poucas mil transações | ~US$ 0,02–0,05 |
 | Storage Queue | Poucas mil mensagens | ~US$ 0,01 |
@@ -437,13 +438,11 @@ table {
 
 # Mas a Microsoft diz: não use free em produção
 
-- **Verdade — com uma ressalva**
-  - A documentação do Cosmos DB free tier diz isso mesmo
-  - Mas não é porque o serviço é pior
-- **É o mesmo serviço, só sem SLA**
-  - Cosmos DB free tier: mesma disponibilidade de 99,99% do tier pago
-  - SLA é garantia contratual (crédito se cair) — o free tier não tem essa garantia
-  - Sem SLA não é sem suporte, é sem garantia financeira
+- **Depende do serviço**
+  - App Service F1 e Static Web Apps Free: sem SLA, "para projetos pessoais"
+  - Cosmos DB free tier: a doc diz "small production workloads" — **com SLA**
+- **Functions, Storage e Key Vault são os mesmos serviços de produção**
+  - A franquia grátis é desconto, não um tier de brinquedo
 - **Para quem está começando, tudo bem**
   - Aplicação nova, poucos usuários: o risco é baixo
   - A infra cresce junto com o faturamento, não antes dele
@@ -491,7 +490,7 @@ table {
 
 <!-- _class: lead -->
 
-# Talk is cheap. Show me the code.
+# Talk is cheap. Show me the bill.
 
 ---
 
@@ -499,7 +498,7 @@ table {
 
 # Obrigado!
 
-Hoje às 16h: **Azure Front Door** 
+Hoje às 16h: **Azure Front Door** 🌎
 
 ---
 
@@ -524,7 +523,6 @@ ul {
   - Pode haver uma autorização temporária de US$ 1, estornada depois
   - Não há cobrança, a menos que você faça upgrade para pagamento conforme o uso
 - **Acabou o crédito ou passaram os 30 dias?** Os serviços são desativados até você fazer o upgrade
-- *Detalhes e armadilhas de custo: vimos às 14h, na palestra "Azure quase de graça"*
 
 ---
 
@@ -543,7 +541,7 @@ table {
 | Minha infra dos sonhos — dados e mensageria | [Azure DocumentDB](https://learn.microsoft.com/azure/documentdb/overview), [PostgreSQL overview](https://learn.microsoft.com/azure/postgresql/overview), [Kafka protocol](https://learn.microsoft.com/azure/event-hubs/azure-event-hubs-apache-kafka-overview), [Service Bus DLQ](https://learn.microsoft.com/azure/service-bus-messaging/service-bus-dead-letter-queues) |
 | Minha infra dos sonhos — observabilidade... | [Managed Prometheus](https://learn.microsoft.com/azure/azure-monitor/metrics/prometheus-metrics-overview), [Log Analytics pricing](https://monitoringcost.com/azure-monitor-cost) |
 | E quando chega a fatura | [API Management pricing](https://caleta.io/blog/azure-api-management-tier-costs/), [AKS pricing](https://www.devzero.io/blog/azure-kubernetes-service-pricing) |
-| O que é sempre grátis — computação | [Static Web Apps plans](https://learn.microsoft.com/azure/static-web-apps/plans), [Container Apps billing](https://learn.microsoft.com/azure/container-apps/billing) |
+| O que é sempre grátis — computação | [Static Web Apps plans](https://learn.microsoft.com/azure/static-web-apps/plans), [Functions pricing](https://azure.microsoft.com/pricing/details/functions/), [Container Apps billing](https://learn.microsoft.com/azure/container-apps/billing) |
 | O que é sempre grátis — dados e mensageria | [Cosmos DB free tier](https://learn.microsoft.com/azure/cosmos-db/free-tier), [SQL Database free offer](https://learn.microsoft.com/azure/azure-sql/database/free-offer) |
 
 ---
@@ -559,11 +557,11 @@ table {
 
 | Slide | Fonte |
 |---|---|
-| Sempre grátis — porta de entrada, observabilidade e segredos | [Static website hosting](https://learn.microsoft.com/azure/storage/blobs/storage-blob-static-website) |
-| Não é free mas é muito barato | [Blob Storage](https://www.bytebase.com/dbcost/azure-flexible-server-pricing/), [Logic Apps pricing](https://learn.microsoft.com/azure/logic-apps/logic-apps-pricing) |
+| O que é sempre grátis — porta de entrada e observabilidade | [Static Web Apps quotas](https://learn.microsoft.com/azure/static-web-apps/quotas), [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/) |
+| Não é free mas é muito barato | [Blob Storage pricing](https://azure.microsoft.com/pricing/details/storage/blobs/), [Logic Apps pricing](https://learn.microsoft.com/azure/logic-apps/logic-apps-pricing) |
 | Te apresento: O Canivete Suíço | [Introduction to Azure Storage](https://learn.microsoft.com/azure/storage/common/storage-introduction) |
 | Nossa arquitetura | [Queue trigger (poison queue)](https://learn.microsoft.com/azure/azure-functions/functions-bindings-storage-queue-trigger), [Table Storage](https://learn.microsoft.com/azure/storage/tables/table-storage-overview), [Cosmos DB backup](https://learn.microsoft.com/azure/cosmos-db/online-backup-and-restore) |
-| Mas a Microsoft diz: não use free em produção | [Cosmos DB free tier: SLA e disponibilidade](https://devblogs.microsoft.com/cosmosdb/build-apps-for-free-with-azure-cosmos-db-free-tier/) |
+| Mas a Microsoft diz: não use free em produção | [Cosmos DB free tier](https://learn.microsoft.com/azure/cosmos-db/free-tier), [App Service limits](https://learn.microsoft.com/azure/azure-resource-manager/management/azure-subscription-service-limits#azure-app-service-limits), [Static Web Apps plans](https://learn.microsoft.com/azure/static-web-apps/plans) |
 | E se minha aplicação for global | [Front Door pricing](https://learn.microsoft.com/azure/frontdoor/understanding-pricing) |
 | Mas isso escala? | [Container Apps overview](https://learn.microsoft.com/azure/container-apps/overview) |
 
