@@ -201,16 +201,19 @@ table {
 <style scoped>
 .valor {
   text-align: center;
-  font-size: 90px;
+  font-size: 72px;
   font-weight: 800;
   color: var(--cor-destaque);
-  margin: 20px 0 0;
+  margin: 0;
 }
 .valor-sub {
   text-align: center;
   font-size: 20px;
   color: var(--cor-suave);
-  margin-bottom: 30px;
+  margin: 0 0 16px;
+}
+ul {
+  font-size: 24px;
 }
 </style>
 
@@ -260,6 +263,12 @@ table {
   - Só que escolhendo as peças certas
 
 ---
+
+<style scoped>
+ul {
+  font-size: 25px;
+}
+</style>
 
 # Vamos pensar em capacidades e não tecnologia
 
@@ -332,8 +341,11 @@ table {
 
 <style scoped>
 table {
-  font-size: 19px;
+  font-size: 16px;
   width: 100%;
+}
+th, td {
+  padding: 5px 10px;
 }
 </style>
 
@@ -435,6 +447,12 @@ table {
 - Nada de ambiente triplicado: só uma versão, do jeito que o projeto pessoal precisa
 
 ---
+
+<style scoped>
+ul {
+  font-size: 24px;
+}
+</style>
 
 # Mas a Microsoft diz: não use free em produção
 
