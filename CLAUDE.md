@@ -49,8 +49,8 @@ fontes.md                     # preços, limites e datas verificados, com link e
 .gitignore
 .gitattributes                # regras do Git LFS
 palestra-1-front-door/        # código curto: afd
-  roteiro.md                  # roteiro minuto a minuto
-  slides.md                   # deck em Marp (slides + notas do apresentador)
+  roteiro.md                  # roteiro minuto a minuto + notas do apresentador, slide a slide
+  slides.md                   # deck em Marp (só o que aparece na tela)
   perguntas.md                # perguntas prováveis da plateia e respostas
   assets/                     # imagens e diagramas usados nos slides
   dist/                       # PPTX/PDF/HTML exportados do Marp (Git LFS)
@@ -68,7 +68,13 @@ shared/
   scripts/                    # utilitários comuns (login, limpeza, checagem de custo)
   marp/tema.css               # tema Marp único para as duas palestras
 .github/workflows/            # pipelines das demos (o GitHub só lê workflows da raiz)
+tmp/                          # rascunhos e planejamento de trabalho (fora do git)
+  planejamento-<palestra>.md  # conteúdo em texto, slide a slide, antes de ir para o slides.md
 ```
+
+- **Fluxo dos slides:** o conteúdo é discutido e aprovado slide a slide em `tmp/planejamento-<código>.md`
+  (ex.: `planejamento-afd.md`); só depois de aprovado vai para o `slides.md`, que continua sendo a
+  fonte da verdade do deck.
 
 - **`infra/` × `demos/NN/`:** `infra/` é o ambiente base que existe antes de a palestra começar;
   `demos/NN/` guarda só o que roda ao vivo ou é exclusivo daquela demo.
@@ -118,10 +124,10 @@ nunca edite o `.pptx` gerado à mão.
 
 - **Uma ideia por slide**, pouco texto (máximo ~20 palavras visíveis).
 - Slides separados por `---`.
-- **Notas do apresentador** ficam em comentários HTML `<!-- ... -->`. O Marp exporta esses
-  comentários como notas do PPTX. Todo slide tem nota com o tempo e o que falar.
-- Comentários que são diretivas do Marp (ex.: `<!-- _class: lead -->`) não viram notas; mantenha
-  diretivas e notas em comentários separados.
+- **Notas do apresentador não ficam no `slides.md`**: o tempo, o que falar e a transição de cada
+  slide ficam no `roteiro.md`. O `slides.md` só usa comentários HTML para diretivas do Marp
+  (ex.: `<!-- _class: lead -->`).
+- Consequência: o PPTX exportado sai **sem notas**. Para apresentar, use o `roteiro.md` como apoio.
 - Imagens em `assets/`, referenciadas com caminho relativo.
 
 Front matter padrão:
@@ -144,16 +150,10 @@ Formato de cada slide:
 # Título curto
 
 Texto, imagem ou diagrama que aparece na tela
-
-<!--
-Tempo: 2 min (acumulado: 07:00)
-O que falar: ...
-Transição: frase que leva ao próximo slide ou à demo
--->
 ```
 
-- Slides de demo são só um marcador (ex.: "🔴 AO VIVO: WAF bloqueando ataque"), com o roteiro
-  da demo nas notas apontando para `demos/NN-nome/README.md`.
+- Slides de demo são só um marcador (ex.: "🔴 AO VIVO: WAF bloqueando ataque"); no `roteiro.md`,
+  o slide aponta para `demos/NN-nome/README.md`.
 - Código nos slides só quando for curto (até ~8 linhas) e legível no fundo da sala; o resto vai
   para o live coding.
 - A soma dos tempos deve fechar em 50 minutos, com folga de 3 a 5 minutos para perguntas e imprevistos.
@@ -164,7 +164,7 @@ Comandos (Marp CLI via npx, rodando da pasta da palestra):
 # Preview com recarga automática no navegador
 npx @marp-team/marp-cli@latest slides.md --theme-set ../shared/marp/tema.css --server
 
-# Exportar PPTX (com notas do apresentador)
+# Exportar PPTX (sem notas; as notas ficam no roteiro.md)
 npx @marp-team/marp-cli@latest slides.md --theme-set ../shared/marp/tema.css --allow-local-files --pptx -o dist/slides.pptx
 
 # Exportar PDF (backup para levar em pendrive)
@@ -181,6 +181,8 @@ npx @marp-team/marp-cli@latest slides.md --theme-set ../shared/marp/tema.css --a
 ### Roteiro (`roteiro.md`)
 - Blocos: abertura com gancho → desenvolvimento → demos → fechamento com chamada para ação.
 - Cada bloco com tempo inicial e final (ex.: `00:00–03:00`).
+- **É aqui que ficam as notas do apresentador.** Cada slide tem: número e título, tempo
+  (início–fim e duração), como apresentar e, quando houver, a transição para o próximo.
 - Ao revisar, aponte o que cortar se estourar e o que é "bônus" se sobrar tempo.
 
 ## Demos ao vivo
