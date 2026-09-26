@@ -52,6 +52,7 @@ palestra-1-front-door/        # código curto: afd
   roteiro.md                  # roteiro minuto a minuto + notas do apresentador, slide a slide
   slides.md                   # deck em Marp (só o que aparece na tela)
   perguntas.md                # perguntas prováveis da plateia e respostas
+  live-coding.md              # visão geral e roteiro do live coding (detalhes em demos/)
   assets/                     # imagens e diagramas usados nos slides
   dist/                       # PPTX/PDF/HTML exportados do Marp (Git LFS)
   demos/
